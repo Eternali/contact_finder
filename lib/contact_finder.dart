@@ -29,8 +29,8 @@ class Contact {
     return new Contact(
       id: jsonMap['_id'],
       name: jsonMap['name'],
-      phoneNumbers: jsonMap['phoneNumbers'].map((number) => new Item<String>.fromJson(number)).toList().retype(Item),
-      avatar: new Uint8List.fromList(jsonMap['avatar']),
+      phoneNumbers: jsonMap['phoneNumbers'].map((number) => new Item<String>.fromJson(number)).toList().retype<Item<String>>(),
+      avatar: jsonMap.containsKey('avatar') ? new Uint8List.fromList(jsonMap['avatar']) : null,
     );
   }
 

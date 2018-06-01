@@ -27,7 +27,7 @@ class ContactFinderPlugin(private var activity: Activity)
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), channelName)
       val instance = ContactFinderPlugin(registrar.activity())
-      registrar.addActivityResultListener(instance)
+      // registrar.addActivityResultListener(instance)
       channel.setMethodCallHandler(instance)
     }
   }
@@ -42,7 +42,8 @@ class ContactFinderPlugin(private var activity: Activity)
       val i = Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI)
       activity.startActivityForResult(i, pickerCode)
     } else {
-      result.notImplemented()
+      result.success(null)
+      // result.notImplemented()
     }
   }
 
@@ -79,6 +80,12 @@ class ContactFinderPlugin(private var activity: Activity)
     cursor.close()
 
     pendingResult?.success(hashMapOf(
+      "phoneNumbers" to arrayListOf(
+        hashMapOf(
+          "label" to phoneLabel,
+          "value" to phoneNumber
+        )
+      ),
       "phoneNumber" to phoneNumber,
       "phoneLabel" to phoneLabel,
       "name" to name,
