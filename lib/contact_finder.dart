@@ -30,7 +30,7 @@ class Contact {
       id: jsonMap['_id'],
       name: jsonMap['name'],
       phoneNumbers: jsonMap['phoneNumbers'].map((number) => new Item<String>.fromJson(number)).toList().retype(Item),
-      avatar: new Uint8List.fromList(jsonMap['avatar'].split('').map((i) => int.parse(i)).toList().retype(int))
+      avatar: new Uint8List.fromList(jsonMap['avatar']),
     );
   }
 
@@ -38,7 +38,7 @@ class Contact {
     '_id': _id,
     'name': name,
     'phoneNumbers': phoneNumbers.map((number) => number.toJson()).toList(),
-    'avatar': avatar.join('')
+    'avatar': avatar
   };
 
 }

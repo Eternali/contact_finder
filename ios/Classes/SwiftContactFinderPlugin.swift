@@ -10,5 +10,11 @@ public class SwiftContactFinderPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     result("iOS " + UIDevice.current.systemVersion)
+
+    if (call.method == "selectContact") {
+      result({  })
+    } else {
+      result(FlutterMethodNotImplemented)
+    }
   }
 }
