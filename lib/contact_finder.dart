@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 class ContactFinder {
   static const MethodChannel _channel = const MethodChannel('contact_finder');
 
-  Future<Contact> selectContact() async {
+  static Future<Contact> selectContact() async {
     final Map<String, dynamic> result = await _channel.invokeMethod('selectContact');
 
     return result == null ? null : new Contact.fromJson(result);
